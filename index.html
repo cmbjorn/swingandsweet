@@ -124,6 +124,28 @@
   .ba text { fill: var(--muted); font: 600 11px -apple-system, sans-serif; }
   .ba .note { color: var(--muted); font-size: 14.5px; margin: 14px 0 0; }
 
+  /* Inside a track */
+  .inside { margin-top: 18px; background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; padding: 26px 28px 10px; box-shadow: var(--shadow); }
+  .inside-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px 24px; margin-bottom: 10px; }
+  .inside .label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .inside h3 { margin: 0; font: 600 clamp(21px, 2.6vw, 26px)/1.2 ui-serif, "New York", Georgia, serif; }
+  .legend-lines { display: flex; gap: 18px; color: var(--muted); font-size: 13.5px; }
+  .legend-lines .ln { display: inline-block; width: 22px; height: 0; border-top: 3.5px solid; border-radius: 2px; margin-right: 8px; vertical-align: 4px; }
+  .legend-lines .ln.before { border-color: color-mix(in srgb, var(--muted) 55%, transparent); }
+  .legend-lines .ln.after { border-color: var(--amber); }
+  .inside svg { width: 100%; height: auto; display: block; margin: 8px 0 6px; }
+  .inside .target { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 5 5; opacity: .8; }
+  .inside .zone { fill: var(--accent-soft); opacity: .55; }
+  .inside .curve { fill: none; stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round; }
+  .inside .curve.before { stroke: color-mix(in srgb, var(--muted) 55%, transparent); }
+  .inside .curve.after { stroke: var(--amber); }
+  .inside .tag { fill: var(--text); font: 700 13px -apple-system, sans-serif; }
+  .inside .tag.sub { fill: var(--accent); font-weight: 600; font-size: 12px; }
+  .inside .axis { fill: var(--muted); font: 600 11px -apple-system, sans-serif; }
+  .inside-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 14px; }
+  .inside-points h4 { margin: 0 0 4px; font-size: 16px; }
+  .inside-points p { color: var(--muted); font-size: 15px; }
+
   /* Features */
   .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin: 0 0 88px; }
   .feature.flip > figure { order: 2; }
@@ -198,7 +220,11 @@
   footer.site .links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 8px; }
 
   @media (max-width: 900px) {
-    .feature, .ba { grid-template-columns: 1fr; gap: 28px; }
+    .feature, .ba, .inside-points { grid-template-columns: 1fr; gap: 28px; }
+    .inside { padding: 22px 18px 6px; }
+    .inside .tag { font-size: 22px; }
+    .inside .tag.sub { font-size: 20px; }
+    .inside .axis { font-size: 19px; }
     .feature.flip > figure { order: 0; }
     .g3, .price { grid-template-columns: 1fr; }
     .price > div { border-right: 0; border-bottom: 1px solid var(--rule); }
@@ -236,8 +262,8 @@
     <p class="eyebrow">For swing and blues DJs · Mac</p>
     <h1>Old records. New remasters. One level.</h1>
     <p class="lede">Swing &amp; Sweet sits between your music and the PA and makes <strong>every track right for the
-      dance floor</strong>: even loudness, no shrill horns, cleaner 78s and safe peaks. Set the mixer once, and watch
-      the dancers instead of the fader.</p>
+      dance floor</strong>: quiet passages lifted inside each track, loud brass and hard drums tamed, cleaner 78s and
+      safe peaks. Set the mixer once, and watch the dancers instead of the fader.</p>
     <div class="buttons">
       <span class="btn primary">Coming soon to the Mac App Store</span>
       <a class="btn ghost" href="#why">See how it works</a>
@@ -260,9 +286,9 @@
   <p class="kicker">Why</p>
   <h2>A swing set spans ninety years of recording</h2>
   <p class="intro">A Bessie Smith 78 from 1925, a Basie big band from 1938 and a modern remaster can sit 10&nbsp;dB
-    apart, and sound as if they come from different planets. Normalization in your music app gets the average close,
-    but not the shrill trumpet chorus, the crackle or the quiet intro. Swing &amp; Sweet listens 2.5 seconds ahead of
-    what the dancers hear, and fixes each track before it reaches the room.</p>
+    apart, and sound as if they come from different planets. Ordinary volume normalization gives each track one
+    setting and leaves the track itself alone. Swing &amp; Sweet listens 2.5 seconds ahead of what the dancers hear, and
+    works on the music as it plays: between the tracks, and inside each one.</p>
   <div class="ba">
     <div class="side before">
       <div class="label">Without</div>
@@ -286,7 +312,7 @@
     </div>
     <div class="side after">
       <div class="label">With Swing &amp; Sweet</div>
-      <h3>Every track at the right level</h3>
+      <h3>Every track at the same level</h3>
       <svg viewBox="0 0 400 170" role="img" aria-label="The same eight tracks at an even loudness">
         <line class="target" x1="0" y1="62" x2="400" y2="62"/>
         <rect class="bar" x="8"   y="64" width="38" height="86" rx="5"/>
@@ -302,7 +328,46 @@
         <text x="223" y="166" text-anchor="middle">1928</text><text x="272" y="166" text-anchor="middle">1941</text>
         <text x="321" y="166" text-anchor="middle">2008</text><text x="370" y="166" text-anchor="middle">1936</text>
       </svg>
-      <p class="note">Breaks and stop-time are kept, quiet solos come through, and the PA never clips.</p>
+      <p class="note">One mixer setting holds from a 1925 transfer to a 2019 remaster.</p>
+    </div>
+  </div>
+
+  <div class="inside">
+    <div class="inside-head">
+      <div>
+        <div class="label">Inside every track</div>
+        <h3>This is where normalization stops, and Swing &amp; Sweet keeps going</h3>
+      </div>
+      <div class="legend-lines">
+        <span><i class="ln before"></i>As recorded</span>
+        <span><i class="ln after"></i>With Swing &amp; Sweet</span>
+      </div>
+    </div>
+    <svg viewBox="0 0 800 230" role="img" aria-label="The loudness of one track over time: the quiet piano solo is lifted, the short break is left alone and the loud shout chorus is held back">
+      <line class="target" x1="0" y1="92" x2="800" y2="92"/>
+      <text class="axis" x="796" y="84" text-anchor="end">target</text>
+      <rect class="zone" x="262" y="18" width="170" height="190" rx="8"/>
+      <rect class="zone" x="432" y="18" width="24" height="190" rx="6"/>
+      <rect class="zone" x="456" y="18" width="168" height="190" rx="8"/>
+      <polyline class="curve before" points="0,200 12,128 80,124 96,98 250,96 270,158 420,154 432,206 456,206 470,44 610,40 628,80 750,82 780,200 800,200"/>
+      <polyline class="curve after" points="0,200 12,104 80,100 96,94 250,92 270,108 420,106 432,206 456,206 470,74 610,72 628,90 750,92 780,200 800,200"/>
+      <text class="tag" x="338" y="36" text-anchor="middle">Piano solo</text>
+      <text class="tag sub" x="338" y="58" text-anchor="middle">lifted</text>
+      <text class="tag" x="444" y="36" text-anchor="middle">Break</text>
+      <text class="tag sub" x="444" y="58" text-anchor="middle">left alone</text>
+      <text class="tag" x="550" y="136" text-anchor="middle">Shout chorus</text>
+      <text class="tag sub" x="550" y="158" text-anchor="middle">held back</text>
+      <text class="axis" x="40" y="226" text-anchor="middle">Intro</text>
+      <text class="axis" x="173" y="226" text-anchor="middle">Ensemble</text>
+      <text class="axis" x="690" y="226" text-anchor="middle">Last chorus</text>
+    </svg>
+    <div class="inside-points">
+      <div><h4>Quiet parts come through</h4><p>A soft piano solo, a muted trumpet or a quiet vocal chorus is lifted while it
+        plays, so it does not vanish under the shoes and the chatter on the floor.</p></div>
+      <div><h4>Loud parts are held back</h4><p>A shout chorus, a screaming brass section or hard drum hits are brought
+        down to the rest of the track, so they never hit the room like a wall.</p></div>
+      <div><h4>The music keeps its shape</h4><p>Breaks and stop-time are never lifted, so the dancers still hit them,
+        and the swing of loud and soft stays. Only the extremes are evened out.</p></div>
     </div>
   </div>
 </section>
@@ -317,11 +382,12 @@
     <figure><img src="images/panel.png" width="384" height="374" alt="The front panel with Leveling, Room, Ambience, Restore and the meters"></figure>
     <div class="text">
       <h3>Leveling that respects the music</h3>
-      <p>Every track comes out at the same loudness without being squashed. One knob sets how firmly, from Soft, which
-        keeps the difference between a quiet trio and a big band, to Strict.</p>
+      <p>Between tracks and inside them, without squashing the music. One knob sets how firmly, from Soft, which keeps
+        more of the difference between a quiet trio and a big band, to Strict, which lifts quiet passages more.</p>
       <ul>
         <li><strong>Breaks and stop-time are never lifted,</strong> so the dancers still hit them.</li>
-        <li><strong>Harsh horns tamed:</strong> shrill trumpet choruses are smoothed only when they need it.</li>
+        <li><strong>Hard brass and drums tamed:</strong> a shrill trumpet section, a crashing cymbal or a snare that
+          cracks through the room is softened only while it is hard on the ears.</li>
         <li><strong>Steady bass</strong> from a thin 78 to a modern master.</li>
         <li><strong>A true-peak limiter</strong> protects the PA, and <em>Limiter only</em> leaves one track untouched.</li>
       </ul>
