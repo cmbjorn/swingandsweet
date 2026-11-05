@@ -161,6 +161,7 @@
   }
 
   .grid { display: grid; gap: 16px; }
+  .g2 { grid-template-columns: repeat(2, 1fr); }
   .g3 { grid-template-columns: repeat(3, 1fr); }
   .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; padding: 24px 24px 10px; box-shadow: var(--shadow); }
   .card .ico { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 16px; background: var(--accent-soft); color: var(--accent); }
@@ -226,7 +227,7 @@
     .inside .tag.sub { font-size: 20px; }
     .inside .axis { font-size: 19px; }
     .feature.flip > figure { order: 0; }
-    .g3, .price { grid-template-columns: 1fr; }
+    .g2, .g3, .price { grid-template-columns: 1fr; }
     .price > div { border-right: 0; border-bottom: 1px solid var(--rule); }
     .price > div:last-child { border-bottom: 0; }
     .tiles { grid-template-columns: 1fr 1fr; }
@@ -408,13 +409,26 @@
     </div>
   </div>
 
-  <div class="grid g3">
-    <div class="card">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg></div>
-      <h3>Room</h3>
-      <p>Fit the sound to the venue: Boomy for a reverberant hall, Padded for a damped room full of people and
-        curtains.</p>
+  <div class="feature narrow" style="grid-template-columns:1fr 240px">
+    <div class="text">
+      <h3>Fit the room, set each track once</h3>
+      <p>Two controls a DJ reaches for all night. Both sit on the front panel, and both are kept apart from the master
+        Volume.</p>
+      <ul>
+        <li><strong>Room fits the sound to the venue.</strong> Seven steps, from Padded 3 through Neutral to Boomy 3.
+          Boomy takes the bass and low mids down in a reverberant hall; Padded brings warmth and air back in a damped
+          room full of people and curtains.</li>
+        <li><strong>Vol-mem. sets the volume of one track, and remembers it.</strong> Lift a weak transfer or pull a
+          ballad down by up to 6&nbsp;dB. The next time that track plays, in Spotify, Music or the player, it starts
+          where you left it.</li>
+        <li><strong>Not the master volume.</strong> Volume is your fader for the whole night. Vol-mem. belongs to the
+          track, so moving one never changes the other.</li>
+      </ul>
     </div>
+    <figure><img src="images/player-card.jpg" width="240" height="727" alt="The sound card with Room, Vol-mem. for this track and the master Volume"></figure>
+  </div>
+
+  <div class="grid g2">
     <div class="card">
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7" opacity=".6"/><circle cx="12" cy="12" r="10.5" opacity=".3"/></svg></div>
       <h3>Ambience</h3>
