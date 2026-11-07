@@ -126,6 +126,17 @@
 
   /* Inside a track */
   .inside { margin-top: 18px; background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; padding: 26px 28px 10px; box-shadow: var(--shadow); }
+  /* Against ReplayGain */
+  .vs { margin-top: 18px; background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; padding: 26px 28px 18px; box-shadow: var(--shadow); }
+  .vs h3 { font: 600 24px/1.25 ui-serif, "New York", Georgia, serif; margin: 0 0 6px; }
+  .vs > p { color: var(--muted); margin: 0 0 16px; max-width: 46em; }
+  .vs table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .vs th { text-align: left; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 0 12px 10px 0; }
+  .vs th:not(:first-child), .vs td:not(:first-child) { text-align: center; width: 22%; }
+  .vs td { padding: 11px 12px 11px 0; border-top: 1px solid var(--rule); vertical-align: top; }
+  .vs td small { display: block; color: var(--muted); font-size: 13px; }
+  .vs .yes { color: var(--accent); font-weight: 700; }
+  .vs .no { color: var(--muted); }
   .inside-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px 24px; margin-bottom: 10px; }
   .inside .label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
   .inside h3 { margin: 0; font: 600 clamp(21px, 2.6vw, 26px)/1.2 ui-serif, "New York", Georgia, serif; }
@@ -149,6 +160,7 @@
   /* Features */
   .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin: 0 0 88px; }
   .feature.flip > figure { order: 2; }
+  .feature.narrow { grid-template-columns: 1fr 240px; }
   .feature figure { margin: 0; }
   .feature figure img { display: block; border-radius: 14px; box-shadow: var(--shadow); }
   .feature .text p { color: var(--muted); font-size: 17px; }
@@ -195,6 +207,7 @@
   }
   .chip small { font-weight: 500; color: var(--muted); margin-left: 6px; }
   .fine { color: var(--muted); font-size: 14.5px; max-width: 44em; margin: 0 auto; }
+  .fine + .fine { margin-top: 10px; }
 
   /* Pricing */
   .price {
@@ -221,7 +234,11 @@
   footer.site .links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 8px; }
 
   @media (max-width: 900px) {
-    .feature, .ba, .inside-points { grid-template-columns: 1fr; gap: 28px; }
+    .vs { padding: 22px 16px 14px; }
+    .vs table { font-size: 14px; }
+    .vs th:not(:first-child), .vs td:not(:first-child) { width: 26%; }
+    .feature, .feature.narrow, .ba, .inside-points { grid-template-columns: 1fr; gap: 28px; }
+    .feature.narrow figure { justify-self: center; max-width: 240px; }
     .inside { padding: 22px 18px 6px; }
     .inside .tag { font-size: 22px; }
     .inside .tag.sub { font-size: 20px; }
@@ -249,6 +266,7 @@
     <a class="brand" href="#"><img src="images/icon.png" alt=""><span>Swing &amp; Sweet</span></a>
     <nav>
       <a href="#why">Why</a>
+      <a href="#who">Who it's for</a>
       <a href="#features">Features</a>
       <a href="#player">The player</a>
       <a href="#price">Price</a>
@@ -260,7 +278,7 @@
 <div class="hero">
   <div class="wrap">
     <img class="icon" src="images/icon.png" width="96" height="96" alt="">
-    <p class="eyebrow">For swing and blues DJs · Mac</p>
+    <p class="eyebrow">For swing and blues DJs, dance teachers and jazz lovers · Mac</p>
     <h1>Old records. New remasters. One level.</h1>
     <p class="lede">Swing &amp; Sweet sits between your music and the PA and makes <strong>every track right for the
       dance floor</strong>: quiet passages lifted inside each track, loud brass and hard drums tamed, cleaner 78s and
@@ -287,7 +305,7 @@
   <p class="kicker">Why</p>
   <h2>A swing set spans ninety years of recording</h2>
   <p class="intro">A Bessie Smith 78 from 1925, a Basie big band from 1938 and a modern remaster can sit 10&nbsp;dB
-    apart, and sound as if they come from different planets. Ordinary volume normalization gives each track one
+    apart, and sound as if they come from different planets. Ordinary volume normalization (ReplayGain, Sound Check) gives each track one
     setting and leaves the track itself alone. Swing &amp; Sweet listens 2.5 seconds ahead of what the dancers hear, and
     works on the music as it plays: between the tracks, and inside each one.</p>
   <div class="ba">
@@ -371,6 +389,52 @@
         and the swing of loud and soft stays. Only the extremes are evened out.</p></div>
     </div>
   </div>
+
+  <div class="vs">
+    <h3>More than ReplayGain</h3>
+    <p>ReplayGain, Apple's Sound Check and the streaming apps' own volume normalization measure each track and give it
+      one volume setting. That is where they stop. Swing &amp; Sweet does that too, and then works on the music while it
+      plays.</p>
+    <table>
+      <thead><tr><th></th><th>ReplayGain and the like</th><th>Swing &amp; Sweet</th></tr></thead>
+      <tbody>
+        <tr><td>The same loudness from track to track</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Inside each track<small>a quiet solo lifted, a loud shout chorus held back, breaks left alone</small></td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Harsh brass and hard drums<small>softened only while they are hard on the ears</small></td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Worn 78s<small>clicks, crackle and hiss taken down</small></td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Peaks safe for the PA<small>a true-peak limiter set for the PA, after everything else</small></td><td class="no">partly</td><td class="yes">✓</td></tr>
+        <tr><td>Every source the same way<small>Spotify, Music, YouTube in a browser and your own files, with no scan or tags first</small></td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Fit the sound to the room<small>room profiles from Padded to Boomy: one knob, set once for the venue</small></td><td class="no">manual EQ</td><td class="yes">✓</td></tr>
+        <tr><td>A little room for dry recordings<small>Ambience: a small reverb mixed into a very dry recording, from a hint to clearly there</small></td><td class="no">DJ effects only</td><td class="yes">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Who it's for -->
+<section id="who">
+  <p class="kicker">Who it's for</p>
+  <h2>Rather dance than fix the sound</h2>
+  <div class="grid g3" style="margin-top:28px">
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-2a9 9 0 0118 0v2"/><rect x="3" y="14" width="4" height="6" rx="1"/><rect x="17" y="14" width="4" height="6" rx="1"/></svg></div>
+      <h3>Social DJs</h3>
+      <p>Set the mixer once and keep your attention on the floor and the next track, from the first tune of the
+        evening to the last.</p>
+    </div>
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v6m0 0l-4 7m4-7l4 7M7 10h10"/></svg></div>
+      <h3>Lindy Hop, Balboa and blues teachers</h3>
+      <p>Press play and teach. The next track will not blast or vanish, so you can dance with the class instead of
+        walking back to the volume between every song.</p>
+    </div>
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg></div>
+      <h3>Classic jazz at home</h3>
+      <p>A whole evening of 1920s 78s, swing-era big bands and modern remasters at one comfortable level, with the
+        worst crackle taken down, on your speakers, your Sonos or your headphones.</p>
+    </div>
+  </div>
 </section>
 
 <!-- Features -->
@@ -409,7 +473,7 @@
     </div>
   </div>
 
-  <div class="feature narrow" style="grid-template-columns:1fr 240px">
+  <div class="feature narrow">
     <div class="text">
       <h3>Fit the room, set each track once</h3>
       <p>Two controls a DJ reaches for all night. Both sit on the front panel, and both are kept apart from the master
@@ -425,7 +489,7 @@
           track, so moving one never changes the other.</li>
       </ul>
     </div>
-    <figure><img src="images/player-card.jpg" width="240" height="727" alt="The sound card with Room, Vol-mem. for this track and the master Volume"></figure>
+    <figure><img src="images/player-card.jpg" width="240" height="615" alt="The sound card with Room, Vol-mem. for this track and the master Volume"></figure>
   </div>
 
   <div class="grid g2">
@@ -475,7 +539,9 @@
 <section id="sources" class="center">
   <p class="kicker">Sources</p>
   <h2>Works with what you already play from</h2>
-  <p class="intro">No drivers, no cables between apps. Choose the app in Setup, press Power, and its sound is processed.</p>
+  <p class="intro">Swing &amp; Sweet is not a music player or a streaming app. Your music app plays the music as it
+    always does; Swing &amp; Sweet takes the sound it plays on this Mac, processes it and passes it on to the PA. No
+    drivers, no cables between apps: choose the app in Setup and press Power.</p>
   <div class="chips">
     <span class="chip">Spotify</span>
     <span class="chip">Apple Music</span>
@@ -484,14 +550,17 @@
     <span class="chip">DJ programs <small>such as djay or Mixxx</small></span>
     <span class="chip">The built-in player</span>
   </div>
-  <p class="fine">With Spotify and Music, pause, skip and seek are followed at once. Other apps are processed from their
-    sound alone. Out to the headphone jack and your mixer, a USB interface, or AirPlay and Sonos at home.</p>
+  <p class="fine">With Spotify, Music and the built-in player, pause, skip and seek reach the room within about half a
+    second. Other apps are processed from their sound alone, so the room hears them 2.5&nbsp;s after you act. Out to
+    the headphone jack and your mixer, a USB interface, or AirPlay and Sonos at home.</p>
+  <p class="fine">Playing music in public needs the right licences: the streaming service's terms and the venue's
+    licences are the DJ's or organiser's to check.</p>
 </section>
 
 <!-- Built for a live floor -->
 <section id="live">
   <p class="kicker">Built for a live floor</p>
-  <h2>The music never stops because of Swing &amp; Sweet</h2>
+  <h2>The music never stops because of Swing&nbsp;&amp;&nbsp;Sweet</h2>
   <div class="grid g3" style="margin-top:28px">
     <div class="card">
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
@@ -509,7 +578,8 @@
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
       <h3>Private by design</h3>
       <p>Nothing is recorded or uploaded. No account, no analytics, no tracking. A few seconds of sound in memory, and
-        that is all.</p>
+        that is all. macOS will still ask for <em>System Audio Recording</em>: that is Apple's name for any access to
+        another app's sound, saved or not.</p>
     </div>
   </div>
 </section>
