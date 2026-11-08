@@ -7,7 +7,7 @@
 <meta name="description" content="Swing & Sweet is a Mac app for DJs who play vintage jazz and blues for dancing: every track at the right level, harsh horns tamed, worn 78s cleaned up and peaks kept safe for the PA.">
 <meta property="og:title" content="Swing & Sweet">
 <meta property="og:description" content="Old records. New remasters. One level. Sound leveling for swing and blues DJs, on the Mac.">
-<meta property="og:image" content="images/player.jpg">
+<meta property="og:image" content="https://cmbjorn.github.io/swingandsweet/images/player.jpg">
 <link rel="icon" href="images/icon.png">
 <style>
   :root {
@@ -40,6 +40,7 @@
     --dark: #111214;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   body {
     margin: 0; background: var(--bg); color: var(--text);
@@ -93,6 +94,11 @@
   .btn.primary { background: var(--amber); color: #1a1206; box-shadow: 0 0 0 1px #ffb45f inset, 0 8px 24px rgba(255, 148, 36, .35); }
   .btn.primary:hover { background: #ffa443; }
   .btn.ghost { color: var(--dark-text); border: 1px solid rgba(255, 255, 255, .2); }
+  .store {
+    display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; padding: 7px 14px; border-radius: 999px;
+    background: rgba(255, 148, 36, .12); color: var(--amber); font-size: 14px; font-weight: 600;
+  }
+  .store svg { width: 16px; height: 16px; }
   .btn.ghost:hover { background: rgba(255, 255, 255, .06); }
   .facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin: 26px 0 0; padding: 0; list-style: none; color: var(--dark-muted); font-size: 14px; }
   .facts li::before { content: "●"; color: #ffa64d; font-size: 9px; margin-right: 8px; vertical-align: 2px; }
@@ -164,6 +170,25 @@
   .feature figure { margin: 0; }
   .feature figure img { display: block; border-radius: 14px; box-shadow: var(--shadow); }
   .feature .text p { color: var(--muted); font-size: 17px; }
+  /* Before and after: one clip at a time, switched in place */
+  .listen { background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; box-shadow: var(--shadow);
+    padding: 26px 28px; margin: -48px 0 88px; }
+  .listen h3 { margin: 0 0 4px; font-size: 20px; }
+  .listen .sub { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+  .listen .row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .listen .play { width: 54px; height: 54px; border-radius: 50%; border: 0; cursor: pointer; flex: none;
+    background: var(--amber); color: #1a1206; display: grid; place-items: center;
+    box-shadow: 0 0 0 1px #ffb45f inset, 0 6px 18px rgba(255, 148, 36, .35); }
+  .listen .play svg { width: 22px; height: 22px; }
+  .listen .switch { display: inline-flex; border-radius: 999px; padding: 3px; background: var(--bg); border: 1px solid var(--rule); }
+  .listen .switch button { border: 0; background: transparent; color: var(--text); font: 600 15px/1 inherit;
+    font-family: inherit; padding: 11px 20px; border-radius: 999px; cursor: pointer; }
+  .listen .switch button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+  .listen .track { flex: 1 1 200px; min-width: 160px; height: 6px; border-radius: 3px; background: var(--rule); overflow: hidden; cursor: pointer; }
+  .listen .track span { display: block; height: 100%; width: 0; background: var(--amber); }
+  .listen .time { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 14px; min-width: 44px; text-align: right; }
+  .listen .fine { margin: 16px 0 0; color: var(--muted); font-size: 13px; }
+  @media (max-width: 640px) { .listen { padding: 20px 16px; margin-top: -40px; } .listen .track { flex-basis: 100%; } }
   .feature ul { list-style: none; padding: 0; margin: 18px 0 0; }
   .feature li { position: relative; padding: 0 0 10px 30px; color: var(--muted); }
   .feature li strong { color: var(--text); }
@@ -233,6 +258,41 @@
   footer.site a { color: var(--muted); }
   footer.site .links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 8px; }
 
+  /* Roadmap */
+  .road { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+  .road .step { position: relative; padding-top: 30px; }
+  .road .step::before { content: ""; position: absolute; top: 8px; left: 0; right: -16px; height: 2px; background: var(--rule); }
+  .road .step:last-child::before { right: 0; background: linear-gradient(90deg, var(--rule), transparent); }
+  .road .step::after {
+    content: ""; position: absolute; top: 2px; left: 0; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+  }
+  .road .step.now::after { background: var(--accent); }
+  .road .when { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  .road ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .road li { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow); }
+  .road li b { display: block; font-size: 16px; margin-bottom: 2px; }
+  .road li span { color: var(--muted); font-size: 14.5px; line-height: 1.5; display: block; }
+  .road-note { color: var(--muted); font-size: 14.5px; margin: 18px 0 0; }
+
+  /* Waitlist */
+  .wl { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 640px; margin: 0 auto 12px; }
+  .wl input, .wl select {
+    font: inherit; font-size: 16px; color: var(--dark-text); background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .2); border-radius: 12px; padding: 12px 14px; min-width: 0;
+  }
+  .wl input[type=email] { flex: 1 1 240px; }
+  .wl select { flex: 0 1 210px; }
+  .wl select option { color: #1a1206; }
+  .wl input::placeholder { color: var(--dark-muted); }
+  .wl input:focus, .wl select:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
+  .wl button { border: 0; cursor: pointer; font: inherit; }
+  .wl .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .closing p.wl-note { font-size: 13.5px; max-width: 36em; margin: 0 auto 34px; }
+  .closing p.wl-done { color: var(--dark-text); font-size: 18px; font-weight: 600; margin: 0 auto 34px; }
+  .closing .more { font-size: 16px; margin-bottom: 18px; }
+
   @media (max-width: 900px) {
     .vs { padding: 22px 16px 14px; }
     .vs table { font-size: 14px; }
@@ -248,6 +308,10 @@
     .price > div { border-right: 0; border-bottom: 1px solid var(--rule); }
     .price > div:last-child { border-bottom: 0; }
     .tiles { grid-template-columns: 1fr 1fr; }
+    .road { grid-template-columns: 1fr; gap: 26px; }
+    .road .step { padding: 0 0 0 30px; }
+    .road .step::before { top: 8px; bottom: -26px; left: 6px; right: auto; width: 2px; height: auto; }
+    .road .step:last-child::before { bottom: 0; background: linear-gradient(180deg, var(--rule), transparent); }
       .stage .window { border-radius: 10px; }
     section { padding-top: 72px; }
     .feature { margin-bottom: 64px; }
@@ -268,6 +332,7 @@
       <a href="#why">Why</a>
       <a href="#who">Who it's for</a>
       <a href="#features">Features</a>
+      <a href="#hear">Hear it</a>
       <a href="#player">The player</a>
       <a href="#price">Price</a>
       <a href="https://cmbjorn.github.io/swing-and-sweet-privacy/support.html">Support</a>
@@ -283,8 +348,9 @@
     <p class="lede">Swing &amp; Sweet sits between your music and the PA and makes <strong>every track right for the
       dance floor</strong>: quiet passages lifted inside each track, loud brass and hard drums tamed, cleaner 78s and
       safe peaks. Set the mixer once, and watch the dancers instead of the fader.</p>
+    <p class="store"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 016 0"/></svg>Coming soon to the Mac App Store</p>
     <div class="buttons">
-      <span class="btn primary">Coming soon to the Mac App Store</span>
+      <a class="btn primary" href="#waitlist">Join the waitlist</a>
       <a class="btn ghost" href="#why">See how it works</a>
     </div>
     <ul class="facts">
@@ -473,6 +539,47 @@
     </div>
   </div>
 
+  <div class="feature">
+    <figure><img src="images/workshop.jpg" width="760" height="520" alt="The Restore Workshop: a list of recordings, each with its verdict, the silence kept at the ends, the denoise and what happens while music plays"></figure>
+    <div class="text">
+      <h3>The Restore Workshop: new copies of your worst records</h3>
+      <p>Drop worn recordings or a whole folder in. The workshop restores them one by one in the background and saves
+        each as a new Apple Lossless file next to the others. Your originals never change.</p>
+      <ul>
+        <li><strong>It measures before it touches.</strong> Each record is tried at several strengths on its hardest
+          parts, and the workshop keeps the one that takes the most crackle without dulling the music. Nothing to set,
+          nothing to listen through.</li>
+        <li><strong>The silence at the ends trimmed</strong> to as much as you want to keep, half a second unless you
+          choose otherwise.</li>
+        <li><strong>The room comes first.</strong> While music plays it pauses, or goes on gently on one core. Turbo
+          restores several records at once when you are not playing.</li>
+        <li><strong>Linked in the library:</strong> the player plays the restored copy in place of the original.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="listen" id="hear">
+    <h3>Hear it: <span class="serif">Panama</span>, 1922</h3>
+    <p class="sub">The Friars Society Orchestra (the New Orleans Rhythm Kings) on a worn Gennett 78. The same 22 seconds
+      before and after the Restore Workshop. Switch while it plays.</p>
+    <div class="row">
+      <button class="play" id="ab-play" type="button" aria-label="Play">
+        <svg id="ab-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="switch" role="group" aria-label="Version">
+        <button type="button" id="ab-before" aria-pressed="true">Before</button>
+        <button type="button" id="ab-after" aria-pressed="false">After</button>
+      </div>
+      <div class="track" id="ab-track" role="slider" aria-label="Position" aria-valuemin="0" aria-valuemax="22" aria-valuenow="0" tabindex="0"><span id="ab-bar"></span></div>
+      <span class="time" id="ab-time">0:00</span>
+    </div>
+    <audio id="ab-a" src="audio/panama-before.m4a" preload="none"></audio>
+    <audio id="ab-b" src="audio/panama-after.m4a" preload="none" muted></audio>
+    <p class="fine">Before: the disc as it plays, transferred flat by the Great 78 Project (Internet Archive). After: the
+      workshop's copy at its default settings. Both at the same loudness, nothing else done. The recording (1922) and
+      the tune (William H. Tyers, 1911) are in the public domain.</p>
+  </div>
+
   <div class="feature narrow">
     <div class="text">
       <h3>Fit the room, set each track once</h3>
@@ -584,6 +691,41 @@
   </div>
 </section>
 
+<!-- Roadmap -->
+<section id="roadmap">
+  <p class="kicker">What's next</p>
+  <h2>Still growing, with the DJs who use it</h2>
+  <p class="intro">Swing &amp; Sweet keeps being worked on after launch. This is what is planned, in the order it is
+    likely to come. The order may change with what DJs ask for.</p>
+  <div class="road">
+    <div class="step now">
+      <p class="when">At launch</p>
+      <ul>
+        <li><b>Leveling inside every track</b><span>Quiet solos lifted, shout choruses held back, breaks left alone.</span></li>
+        <li><b>Restore, Room and Ambience</b><span>Worn 78s cleaned up, the sound fitted to the venue, a touch of space for dry recordings.</span></li>
+        <li><b>The Restore Workshop</b><span>Worn recordings restored into new Apple Lossless copies in the background, the silence at the ends trimmed.</span></li>
+        <li><b>The DJ player</b><span>Up Next, pre-listen at the room's level, and BPM the way swing DJs count.</span></li>
+      </ul>
+    </div>
+    <div class="step">
+      <p class="when">Next</p>
+      <ul>
+        <li><b>The same pause between every track</b><span>Silence at the start and end of a file trimmed in the player, so every gap is the length you set.</span></li>
+        <li><b>Your tags come along</b><span>Genre, comments, grouping and ratings from your files (FLAC too) and from Music, so your Lindy, Balboa and blues tags work at once.</span></li>
+      </ul>
+    </div>
+    <div class="step">
+      <p class="when">Later</p>
+      <ul>
+        <li><b>Slower for class</b><span>Tempo down or up without changing the pitch, in the player, to teach a step at an easier speed.</span></li>
+        <li><b>Levelled files for any player</b><span>The workshop's copies levelled as well as cleaned up, in a batch or as you add them to the library, for DJ programs, CDJs and phones. Your originals are never changed.</span></li>
+      </ul>
+    </div>
+  </div>
+  <p class="road-note">Updated November 2026. Missing something you need at a dance?
+    <a href="mailto:christianmb@gmail.com?subject=Swing%20%26%20Sweet%3A%20a%20wish">Tell me</a>.</p>
+</section>
+
 <!-- Price -->
 <section id="price">
   <p class="kicker">Price</p>
@@ -597,11 +739,31 @@
   </div>
 </section>
 
-<div class="closing">
+<div class="closing" id="waitlist">
   <h2>Coming soon to the Mac App Store</h2>
-  <p>Questions, or want to hear it at your next social? Write to Christian Melby Bjørn, who makes Swing &amp; Sweet.</p>
+  <p>Join the waitlist and you will get one email, on the day Swing &amp; Sweet is out.</p>
+  <form class="wl" id="wl-form" action="https://formsubmit.co/christianmb@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Swing & Sweet waitlist">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://cmbjorn.github.io/swingandsweet/#thanks">
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="sr" for="wl-email">Email</label>
+    <input id="wl-email" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
+    <select name="role" aria-label="I am">
+      <option value="">I am… (optional)</option>
+      <option>A swing or blues DJ</option>
+      <option>A dance teacher</option>
+      <option>A jazz listener at home</option>
+      <option>Other</option>
+    </select>
+    <button class="btn primary" type="submit">Join the waitlist</button>
+  </form>
+  <p class="wl-done" id="wl-done" hidden>Thank you, you are on the list.</p>
+  <p class="wl-note" id="wl-note">Your email is sent to Christian through the form service FormSubmit and used only to tell
+    you when Swing &amp; Sweet is out. Write, and you are taken off the list.</p>
+  <p class="more">Questions, or want to hear it at your next social? Write to Christian Melby Bjørn, who makes Swing &amp; Sweet.</p>
   <div class="buttons">
-    <a class="btn primary" href="mailto:christianmb@gmail.com?subject=Swing%20%26%20Sweet">Get in touch</a>
+    <a class="btn ghost" href="mailto:christianmb@gmail.com?subject=Swing%20%26%20Sweet">Get in touch</a>
     <a class="btn ghost" href="https://cmbjorn.github.io/swing-and-sweet-privacy/support.html">Support and guide</a>
   </div>
 </div>
@@ -616,5 +778,81 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  // Before and after: both clips play together and one is muted, so a switch is instant and in place.
+  var a = document.getElementById('ab-a'), b = document.getElementById('ab-b');
+  if (!a || !b) return;
+  var play = document.getElementById('ab-play'), icon = document.getElementById('ab-icon');
+  var before = document.getElementById('ab-before'), after = document.getElementById('ab-after');
+  var bar = document.getElementById('ab-bar'), track = document.getElementById('ab-track'), time = document.getElementById('ab-time');
+  var PLAY = 'M8 5v14l11-7z', PAUSE = 'M7 5h4v14H7zM13 5h4v14h-4z';
+  function playing() { return !a.paused; }
+  function show(afterOn) {
+    a.muted = afterOn; b.muted = !afterOn;
+    before.setAttribute('aria-pressed', String(!afterOn));
+    after.setAttribute('aria-pressed', String(afterOn));
+  }
+  function setIcon() {
+    icon.innerHTML = '<path d="' + (playing() ? PAUSE : PLAY) + '"/>';
+    play.setAttribute('aria-label', playing() ? 'Pause' : 'Play');
+  }
+  function start() {
+    if (Math.abs(a.currentTime - b.currentTime) > 0.03) b.currentTime = a.currentTime;
+    Promise.all([a.play(), b.play()]).catch(function () {}).then(setIcon);
+  }
+  function stop() { a.pause(); b.pause(); setIcon(); }
+  play.addEventListener('click', function () { playing() ? stop() : start(); });
+  before.addEventListener('click', function () { show(false); });
+  after.addEventListener('click', function () { show(true); });
+  function seek(fraction) {
+    if (!a.duration) return;
+    var t = Math.max(0, Math.min(1, fraction)) * a.duration;
+    a.currentTime = t; b.currentTime = t;
+  }
+  track.addEventListener('click', function (e) {
+    var r = track.getBoundingClientRect();
+    seek((e.clientX - r.left) / r.width);
+  });
+  track.addEventListener('keydown', function (e) {
+    if (!a.duration) return;
+    if (e.key === 'ArrowRight') seek((a.currentTime + 2) / a.duration);
+    if (e.key === 'ArrowLeft') seek((a.currentTime - 2) / a.duration);
+  });
+  a.addEventListener('timeupdate', function () {
+    var d = a.duration || 22, t = a.currentTime;
+    bar.style.width = (100 * t / d) + '%';
+    track.setAttribute('aria-valuenow', String(Math.round(t)));
+    time.textContent = Math.floor(t / 60) + ':' + ('0' + Math.floor(t % 60)).slice(-2);
+    if (!b.paused && Math.abs(a.currentTime - b.currentTime) > 0.06) b.currentTime = a.currentTime;
+  });
+  a.addEventListener('ended', function () { b.pause(); a.currentTime = 0; b.currentTime = 0; setIcon(); });
+  show(false);
+})();
+</script>
+<script>
+(function () {
+  var form = document.getElementById('wl-form');
+  var done = document.getElementById('wl-done');
+  function thanks() { form.hidden = true; done.hidden = false; }
+  if (location.hash === '#thanks') { thanks(); document.getElementById('waitlist').scrollIntoView(); }
+  form.addEventListener('submit', function (e) {
+    if (!window.fetch) return;
+    e.preventDefault();
+    var data = {};
+    new FormData(form).forEach(function (v, k) { data[k] = v; });
+    if (data._honey) { thanks(); return; }
+    var button = form.querySelector('button');
+    button.disabled = true;
+    fetch('https://formsubmit.co/ajax/christianmb@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (j && String(j.success) === 'true') { thanks(); } else { form.submit(); }
+    }).catch(function () { form.submit(); });
+  });
+})();
+</script>
 </body>
 </html>
