@@ -168,6 +168,10 @@
   .feature.flip > figure { order: 2; }
   .feature.narrow { grid-template-columns: 1fr 240px; }
   .feature figure { margin: 0; }
+  .inside + .feature { margin-top: 72px; }
+  section > .feature:last-child, section > .listen:last-child { margin-bottom: 0; }
+  #room .feature.narrow { align-items: start; margin-top: 28px; }
+  .feature.narrow + .vs { margin-top: -40px; }
   .feature figure img { display: block; border-radius: 14px; box-shadow: var(--shadow); }
   .feature .text p { color: var(--muted); font-size: 17px; }
   /* Before and after: one clip at a time, switched in place */
@@ -329,9 +333,10 @@
   <div class="wrap">
     <a class="brand" href="#"><img src="images/icon.png" alt=""><span>Swing &amp; Sweet</span></a>
     <nav>
-      <a href="#why">Why</a>
       <a href="#who">Who it's for</a>
-      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#leveling">Leveling</a>
+      <a href="#restore">Restore</a>
       <a href="#hear">Hear it</a>
       <a href="#player">The player</a>
       <a href="#price">Price</a>
@@ -345,13 +350,13 @@
     <img class="icon" src="images/icon.png" width="96" height="96" alt="">
     <p class="eyebrow">For swing and blues DJs, dance teachers and jazz lovers · Mac</p>
     <h1>Old records. New remasters. One level.</h1>
-    <p class="lede">Swing &amp; Sweet sits between your music and the PA and makes <strong>every track right for the
-      dance floor</strong>: quiet passages lifted inside each track, loud brass and hard drums tamed, cleaner 78s and
-      safe peaks. Set the mixer once, and watch the dancers instead of the fader.</p>
+    <p class="lede">Swing &amp; Sweet sits between your music app and the PA and makes <strong>every track right for
+      the dance floor</strong>: one level from track to track, quiet solos lifted, harsh brass tamed, worn 78s cleaned
+      up. Set the mixer once and watch the dancers, not the fader.</p>
     <p class="store"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 016 0"/></svg>Coming soon to the Mac App Store</p>
     <div class="buttons">
       <a class="btn primary" href="#waitlist">Join the waitlist</a>
-      <a class="btn ghost" href="#why">See how it works</a>
+      <a class="btn ghost" href="#how">See how it works</a>
     </div>
     <ul class="facts">
       <li>Free 14-day trial</li>
@@ -366,14 +371,60 @@
 
 <main class="wrap">
 
-<!-- Why -->
-<section id="why">
-  <p class="kicker">Why</p>
+<!-- Who it's for -->
+<section id="who">
+  <p class="kicker">Who it's for</p>
+  <h2>Rather dance than fix the sound</h2>
+  <div class="grid g3" style="margin-top:28px">
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-2a9 9 0 0118 0v2"/><rect x="3" y="14" width="4" height="6" rx="1"/><rect x="17" y="14" width="4" height="6" rx="1"/></svg></div>
+      <h3>Social DJs</h3>
+      <p>Set the mixer once and keep your mind on the floor and the next track, from the first tune to the last.</p>
+    </div>
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v6m0 0l-4 7m4-7l4 7M7 10h10"/></svg></div>
+      <h3>Lindy Hop, Balboa and blues teachers</h3>
+      <p>Press play and teach. The next track will not blast or vanish, so you stay with the class instead of walking
+        back to the volume.</p>
+    </div>
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg></div>
+      <h3>Classic jazz at home</h3>
+      <p>1920s 78s, swing-era big bands and modern remasters at one comfortable level, on your speakers, your Sonos or
+        your headphones.</p>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="how" class="center">
+  <p class="kicker">How it works</p>
+  <h2>Keep playing from the app you use</h2>
+  <p class="intro">Swing &amp; Sweet is not another music app. Your music app plays as it always does; Swing &amp; Sweet
+    takes its sound, works on it and passes it on to the PA. No drivers, no cables between apps: choose the app and
+    press Power.</p>
+  <div class="chips">
+    <span class="chip">Spotify</span>
+    <span class="chip">Apple Music</span>
+    <span class="chip">YouTube <small>in any browser</small></span>
+    <span class="chip">TIDAL, VLC and other players</span>
+    <span class="chip">DJ programs <small>such as djay or Mixxx</small></span>
+    <span class="chip">The built-in player</span>
+  </div>
+  <p class="fine">Pause, skip and seek in Spotify, Music and the built-in player reach the room within about half a
+    second; other apps after about 2.5&nbsp;s. Out to the headphone jack and your mixer, a USB interface, or AirPlay
+    and Sonos at home.</p>
+  <p class="fine">Playing music in public needs the right licences: the streaming service's terms and the venue's
+    licences are the DJ's or organiser's to check.</p>
+</section>
+
+<!-- Leveling -->
+<section id="leveling">
+  <p class="kicker">Leveling</p>
   <h2>A swing set spans ninety years of recording</h2>
-  <p class="intro">A Bessie Smith 78 from 1925, a Basie big band from 1938 and a modern remaster can sit 10&nbsp;dB
-    apart, and sound as if they come from different planets. Ordinary volume normalization (ReplayGain, Sound Check) gives each track one
-    setting and leaves the track itself alone. Swing &amp; Sweet listens 2.5 seconds ahead of what the dancers hear, and
-    works on the music as it plays: between the tracks, and inside each one.</p>
+  <p class="intro">A 1925 Bessie Smith 78 and a modern remaster can sit 10&nbsp;dB apart. Volume normalization
+    (ReplayGain, Sound Check) gives each track one setting and stops there. Swing &amp; Sweet evens out the tracks, and
+    then keeps working inside each one while it plays.</p>
   <div class="ba">
     <div class="side before">
       <div class="label">Without</div>
@@ -393,7 +444,7 @@
         <text x="223" y="166" text-anchor="middle">1928</text><text x="272" y="166" text-anchor="middle">1941</text>
         <text x="321" y="166" text-anchor="middle">2008</text><text x="370" y="166" text-anchor="middle">1936</text>
       </svg>
-      <p class="note">Quiet transfers get lost on the floor, loud remasters blast, and harsh horns cut through the room.</p>
+      <p class="note">Quiet transfers get lost on the floor, loud remasters blast, harsh horns cut through the room.</p>
     </div>
     <div class="side after">
       <div class="label">With Swing &amp; Sweet</div>
@@ -421,7 +472,7 @@
     <div class="inside-head">
       <div>
         <div class="label">Inside every track</div>
-        <h3>This is where normalization stops, and Swing &amp; Sweet keeps going</h3>
+        <h3>Where normalization stops, Swing &amp; Sweet keeps going</h3>
       </div>
       <div class="legend-lines">
         <span><i class="ln before"></i>As recorded</span>
@@ -447,93 +498,48 @@
       <text class="axis" x="690" y="226" text-anchor="middle">Last chorus</text>
     </svg>
     <div class="inside-points">
-      <div><h4>Quiet parts come through</h4><p>A soft piano solo, a muted trumpet or a quiet vocal chorus is lifted while it
-        plays, so it does not vanish under the shoes and the chatter on the floor.</p></div>
-      <div><h4>Loud parts are held back</h4><p>A shout chorus, a screaming brass section or hard drum hits are brought
-        down to the rest of the track, so they never hit the room like a wall.</p></div>
-      <div><h4>The music keeps its shape</h4><p>Breaks and stop-time are never lifted, so the dancers still hit them,
-        and the swing of loud and soft stays. Only the extremes are evened out.</p></div>
+      <div><h4>Quiet parts come through</h4><p>A soft piano solo or a muted trumpet is lifted while it plays, so it is
+        not lost under the shoes and the chatter.</p></div>
+      <div><h4>Loud parts are held back</h4><p>A shout chorus or screaming brass is brought down to the rest of the
+        track, so it never hits the room like a wall.</p></div>
+      <div><h4>The music keeps its shape</h4><p>Breaks and stop-time are never lifted, so the dancers still hit them.
+        Only the extremes are evened out.</p></div>
     </div>
   </div>
-
-  <div class="vs">
-    <h3>More than ReplayGain</h3>
-    <p>ReplayGain, Apple's Sound Check and the streaming apps' own volume normalization measure each track and give it
-      one volume setting. That is where they stop. Swing &amp; Sweet does that too, and then works on the music while it
-      plays.</p>
-    <table>
-      <thead><tr><th></th><th>ReplayGain and the like</th><th>Swing &amp; Sweet</th></tr></thead>
-      <tbody>
-        <tr><td>The same loudness from track to track</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-        <tr><td>Inside each track<small>a quiet solo lifted, a loud shout chorus held back, breaks left alone</small></td><td class="no">—</td><td class="yes">✓</td></tr>
-        <tr><td>Harsh brass and hard drums<small>softened only while they are hard on the ears</small></td><td class="no">—</td><td class="yes">✓</td></tr>
-        <tr><td>Worn 78s<small>clicks, crackle and hiss taken down</small></td><td class="no">—</td><td class="yes">✓</td></tr>
-        <tr><td>Peaks safe for the PA<small>a true-peak limiter set for the PA, after everything else</small></td><td class="no">partly</td><td class="yes">✓</td></tr>
-        <tr><td>Every source the same way<small>Spotify, Music, YouTube in a browser and your own files, with no scan or tags first</small></td><td class="no">—</td><td class="yes">✓</td></tr>
-        <tr><td>Fit the sound to the room<small>room profiles from Padded to Boomy: one knob, set once for the venue</small></td><td class="no">manual EQ</td><td class="yes">✓</td></tr>
-        <tr><td>A little room for dry recordings<small>Ambience: a small reverb mixed into a very dry recording, from a hint to clearly there</small></td><td class="no">DJ effects only</td><td class="yes">✓</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- Who it's for -->
-<section id="who">
-  <p class="kicker">Who it's for</p>
-  <h2>Rather dance than fix the sound</h2>
-  <div class="grid g3" style="margin-top:28px">
-    <div class="card">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-2a9 9 0 0118 0v2"/><rect x="3" y="14" width="4" height="6" rx="1"/><rect x="17" y="14" width="4" height="6" rx="1"/></svg></div>
-      <h3>Social DJs</h3>
-      <p>Set the mixer once and keep your attention on the floor and the next track, from the first tune of the
-        evening to the last.</p>
-    </div>
-    <div class="card">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v6m0 0l-4 7m4-7l4 7M7 10h10"/></svg></div>
-      <h3>Lindy Hop, Balboa and blues teachers</h3>
-      <p>Press play and teach. The next track will not blast or vanish, so you can dance with the class instead of
-        walking back to the volume between every song.</p>
-    </div>
-    <div class="card">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg></div>
-      <h3>Classic jazz at home</h3>
-      <p>A whole evening of 1920s 78s, swing-era big bands and modern remasters at one comfortable level, with the
-        worst crackle taken down, on your speakers, your Sonos or your headphones.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Features -->
-<section id="features">
-  <p class="kicker">Features</p>
-  <h2>Every track looked after, automatically</h2>
-  <p class="intro">Automatic, track by track, and made for music recorded between the 1920s and today.</p>
 
   <div class="feature">
     <figure><img src="images/panel.png" width="384" height="374" alt="The front panel with Leveling, Room, Ambience, Restore and the meters"></figure>
     <div class="text">
-      <h3>Leveling that respects the music</h3>
-      <p>Between tracks and inside them, without squashing the music. One knob sets how firmly, from Soft, which keeps
-        more of the difference between a quiet trio and a big band, to Strict, which lifts quiet passages more.</p>
+      <h3>One knob for how firmly</h3>
+      <p>From Soft, which keeps more of the difference between a quiet trio and a big band, to Strict, which lifts
+        quiet passages more.</p>
       <ul>
-        <li><strong>Breaks and stop-time are never lifted,</strong> so the dancers still hit them.</li>
-        <li><strong>Hard brass and drums tamed:</strong> a shrill trumpet section, a crashing cymbal or a snare that
-          cracks through the room is softened only while it is hard on the ears.</li>
+        <li><strong>Harsh brass and drums tamed:</strong> a shrill trumpet section or a cracking snare is softened
+          only while it is hard on the ears.</li>
         <li><strong>Steady bass</strong> from a thin 78 to a modern master.</li>
-        <li><strong>A true-peak limiter</strong> protects the PA, and <em>Limiter only</em> leaves one track untouched.</li>
+        <li><strong>Peaks kept safe for the PA</strong>, and <em>Limiter only</em> leaves one track untouched.</li>
+        <li><strong>It learns your tracks:</strong> the second time a track plays, it starts at the right level and a
+          quiet solo is lifted from its first note.</li>
       </ul>
     </div>
   </div>
+</section>
+
+<!-- Restore -->
+<section id="restore">
+  <p class="kicker">Restore</p>
+  <h2>Worn 78s, cleaned up</h2>
+  <p class="intro">Clicks, crackle and hiss taken down: live while you play, or as new copies of your worst
+    records.</p>
 
   <div class="feature flip">
     <figure><img src="images/player-sound.jpg" width="508" height="378" alt="The Sound column with the lift, the quality grade and R for Restore"></figure>
     <div class="text">
-      <h3>Restore for worn 78s</h3>
-      <p>Clicks, crackle and hiss are taken down on worn transfers, from the first note and only as much as each
-        recording needs. Clean recordings are left as they are, and a worn one is never let go in the middle of a
-        track: on a dance floor, crackle coming back is worse than a little cleaning.</p>
+      <h3>Live, from the first note</h3>
+      <p>Each worn recording gets only as much cleaning as it needs; clean ones are left alone. A worn track is never
+        let go halfway: on a dance floor, crackle coming back is worse than a little cleaning.</p>
       <ul>
-        <li><strong>A grade for every recording,</strong> from poor to good, before you play it.</li>
+        <li><strong>A grade for every file</strong> in the player's library, from poor to good, before you play it.</li>
         <li><strong>The lift it will get,</strong> so you know a quiet old record will hold up in the room.</li>
       </ul>
     </div>
@@ -542,19 +548,18 @@
   <div class="feature">
     <figure><img src="images/workshop.jpg" width="760" height="520" alt="The Restore Workshop: a list of recordings, each with its verdict, the silence kept at the ends, the denoise and what happens while music plays"></figure>
     <div class="text">
-      <h3>The Restore Workshop: new copies of your worst records</h3>
-      <p>Drop worn recordings or a whole folder in. The workshop restores them one by one in the background and saves
-        each as a new Apple Lossless file next to the others. Your originals never change.</p>
+      <h3>The Restore Workshop: new copies</h3>
+      <p>Drop in worn recordings or a whole folder. The workshop restores them in the background and saves each as a
+        new Apple Lossless file. Your originals never change.</p>
       <ul>
-        <li><strong>It finds the right strength for each record</strong>, taking the most crackle it can without
-          dulling the music. Nothing to set, nothing to listen through.</li>
-        <li><strong>A trained model for the surface noise</strong>, made for historical recordings, used when it does
-          the better job. It runs on your Mac; nothing is uploaded.</li>
-        <li><strong>The silence at the ends trimmed</strong>, as much as you want.</li>
-        <li><strong>Finished copies, if you want them:</strong> a second copy of each record, levelled and with its
-          harshness tamed as the room plays it, ready for any other player.</li>
-        <li><strong>The room comes first.</strong> It never disturbs the music you play, and works faster when you
-          are not playing.</li>
+        <li><strong>The right strength for each record,</strong> as much crackle out as it can take without dulling
+          the music. Nothing to set.</li>
+        <li><strong>A trained model for surface noise,</strong> used when it does the better job. It runs on your
+          Mac; nothing is uploaded.</li>
+        <li><strong>Silence at the ends trimmed,</strong> as much as you want.</li>
+        <li><strong>Finished copies if you want them:</strong> levelled and tamed as the room plays them, for any
+          other player.</li>
+        <li><strong>The music comes first.</strong> The workshop never disturbs what you play.</li>
         <li><strong>Linked in the library:</strong> the player plays the restored copy in place of the original.</li>
       </ul>
     </div>
@@ -577,41 +582,47 @@
     </div>
     <div id="ab-clips" data-before="audio/panama-before.m4a" data-after="audio/panama-after.m4a?v=2" hidden></div>
     <p class="fine">Before: the disc as it plays, transferred flat by the Great 78 Project (Internet Archive). After: the
-      workshop's finished copy at its default settings, as the room would play it. Both at the same loudness. The recording (1922) and
-      the tune (William H. Tyers, 1911) are in the public domain.</p>
+      workshop's finished copy at its default settings. Both at the same loudness. The recording (1922) and the tune
+      (William H. Tyers, 1911) are in the public domain.</p>
   </div>
+</section>
 
+<!-- Room and track -->
+<section id="room">
+  <p class="kicker">Room and track</p>
+  <h2>Fit the room, set each track once</h2>
   <div class="feature narrow">
     <div class="text">
-      <h3>Fit the room, set each track once</h3>
-      <p>Two controls a DJ reaches for all night. Both sit on the front panel, and both are kept apart from the master
-        Volume.</p>
+      <p>Two controls a DJ reaches for, both kept apart from the master Volume.</p>
       <ul>
-        <li><strong>Room fits the sound to the venue.</strong> Seven steps, from Padded 3 through Neutral to Boomy 3.
-          Boomy takes the bass and low mids down in a reverberant hall; Padded brings warmth and air back in a damped
-          room full of people and curtains.</li>
-        <li><strong>Vol-mem. sets the volume of one track, and remembers it.</strong> Lift a weak transfer or pull a
-          ballad down by up to 6&nbsp;dB. The next time that track plays, in Spotify, Music or the player, it starts
-          where you left it.</li>
-        <li><strong>Not the master volume.</strong> Volume is your fader for the whole night. Vol-mem. belongs to the
-          track, so moving one never changes the other.</li>
+        <li><strong>Room fits the sound to the venue,</strong> from Padded through Neutral to Boomy: less boom in a
+          reverberant hall, more warmth and air in a damped room full of people.</li>
+        <li><strong>Vol-mem. sets one track's volume and remembers it.</strong> Lift a weak transfer or pull a ballad
+          down; next time, in Spotify, Music or the player, the track starts where you left it.</li>
+        <li><strong>Ambience</strong> adds a touch of space to a very dry recording, so it does not sound as if it is
+          inside your head.</li>
       </ul>
     </div>
     <figure><img src="images/player-card.jpg?v=2" width="240" height="615" alt="The sound card with Room, Vol-mem. for this track and the master Volume"></figure>
   </div>
 
-  <div class="grid g2">
-    <div class="card">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7" opacity=".6"/><circle cx="12" cy="12" r="10.5" opacity=".3"/></svg></div>
-      <h3>Ambience</h3>
-      <p>A touch of space for a very dry recording, so it does not sound as if it is inside your head.</p>
-    </div>
-    <div class="card">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></div>
-      <h3>It learns your tracks</h3>
-      <p>The second time a track plays, it starts at the right level and a quiet solo is lifted from its first note.
-        Notes are numbers, never sound.</p>
-    </div>
+  <div class="vs">
+    <h3>More than ReplayGain</h3>
+    <p>ReplayGain, Sound Check and the streaming apps' normalization give each track one volume setting. Swing &amp;
+      Sweet does that too, and then works on the music while it plays.</p>
+    <table>
+      <thead><tr><th></th><th>ReplayGain and the like</th><th>Swing &amp; Sweet</th></tr></thead>
+      <tbody>
+        <tr><td>The same loudness from track to track</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Inside each track<small>quiet solos lifted, loud choruses held back, breaks left alone</small></td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Harsh brass and hard drums<small>softened only while they are hard on the ears</small></td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Worn 78s<small>clicks, crackle and hiss taken down</small></td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Peaks safe for the PA</td><td class="no">partly</td><td class="yes">✓</td></tr>
+        <tr><td>Every source the same way<small>Spotify, Music, a browser or your own files, no scan first</small></td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Fit the sound to the room<small>one knob, set once for the venue</small></td><td class="no">manual EQ</td><td class="yes">✓</td></tr>
+        <tr><td>A little space for dry recordings</td><td class="no">DJ effects only</td><td class="yes">✓</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
@@ -623,47 +634,24 @@
     <section>
       <p class="kicker">The built-in player</p>
       <h2>Or run the whole evening from your own files</h2>
-      <p class="intro">A DJ player made for social dancing: no decks, no mixing, just the next three tracks, the time
-        left and your headphones. Every file plays through the same processing, starts at once, and the gap between
-        tracks is exact.</p>
+      <p class="intro">A DJ player made for social dancing: no decks, no mixing. The next three tracks, the time left
+        and your headphones. Every file gets the same sound, starts at once, and the gap between tracks is exact.</p>
       <img class="big" src="images/player.jpg?v=2" width="1440" height="800" alt="The player: the room's track, the library, Up Next, pre-listen and the sound card">
       <div class="tiles">
         <div class="tile"><h3><span class="dot" style="background:#ff9424"></span>Up Next</h3><p>The three next tracks,
-          when the set ends, and a tempo curve through it. Gentle marks for the same artist twice or a jump in tempo.</p></div>
+          when the set ends, and its tempo curve. Gentle marks for the same artist twice or a jump in tempo.</p></div>
         <div class="tile"><h3><span class="dot" style="background:#4f8fff"></span>Pre-listen</h3><p>Hear any track in
           Bluetooth or USB headphones while the room plays on, at about the level the room will give it.</p></div>
         <div class="tile"><h3><span class="dot" style="background:#ff9424"></span>Swing BPM</h3><p>Tempo counted the way
-          swing DJs count. TAP to correct it, and the analysis learns what swing sounds like in your music.</p></div>
+          swing DJs count. TAP to correct it, and it learns your music.</p></div>
         <div class="tile"><h3><span class="dot" style="background:#ff9424"></span>Your library</h3><p>Search, tags, BPM
-          filters, Hide played tonight, and playlists in and out as M3U8. Your files are never changed.</p></div>
+          filters, Hide played tonight, M3U8 playlists in and out. Your files are never changed.</p></div>
       </div>
     </section>
   </div>
 </div>
 
 <main class="wrap">
-
-<!-- Sources -->
-<section id="sources" class="center">
-  <p class="kicker">Sources</p>
-  <h2>Works with what you already play from</h2>
-  <p class="intro">Swing &amp; Sweet is not a music player or a streaming app. Your music app plays the music as it
-    always does; Swing &amp; Sweet takes the sound it plays on this Mac, processes it and passes it on to the PA. No
-    drivers, no cables between apps: choose the app in Setup and press Power.</p>
-  <div class="chips">
-    <span class="chip">Spotify</span>
-    <span class="chip">Apple Music</span>
-    <span class="chip">YouTube <small>in any browser</small></span>
-    <span class="chip">TIDAL, VLC and other players</span>
-    <span class="chip">DJ programs <small>such as djay or Mixxx</small></span>
-    <span class="chip">The built-in player</span>
-  </div>
-  <p class="fine">With Spotify, Music and the built-in player, pause, skip and seek reach the room within about half a
-    second. Other apps are processed from their sound alone, so the room hears them 2.5&nbsp;s after you act. Out to
-    the headphone jack and your mixer, a USB interface, or AirPlay and Sonos at home.</p>
-  <p class="fine">Playing music in public needs the right licences: the streaming service's terms and the venue's
-    licences are the DJ's or organiser's to check.</p>
-</section>
 
 <!-- Built for a live floor -->
 <section id="live">
@@ -678,15 +666,13 @@
     <div class="card">
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 003.4 0"/><path d="M3 3l18 18"/></svg></div>
       <h3>No pings on the PA</h3>
-      <p>While it runs, the Mac's alert sounds move to the built-in speakers, so a notification never reaches the
-        dance floor.</p>
+      <p>While it runs, the Mac's alert sounds move to the built-in speakers, never to the dance floor.</p>
     </div>
     <div class="card">
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
       <h3>Private by design</h3>
-      <p>Nothing is recorded or uploaded. No account, no analytics, no tracking. A few seconds of sound in memory, and
-        that is all. macOS will still ask for <em>System Audio Recording</em>: that is Apple's name for any access to
-        another app's sound, saved or not.</p>
+      <p>Nothing is recorded or uploaded. No account, no analytics, no tracking. macOS still asks for <em>System Audio
+        Recording</em>: Apple's name for any access to another app's sound, saved or not.</p>
     </div>
   </div>
 </section>
@@ -695,29 +681,28 @@
 <section id="roadmap">
   <p class="kicker">What's next</p>
   <h2>Still growing, with the DJs who use it</h2>
-  <p class="intro">Swing &amp; Sweet keeps being worked on after launch. This is what is planned, in the order it is
-    likely to come. The order may change with what DJs ask for.</p>
+  <p class="intro">What is planned after launch, in the likely order. DJs' wishes can change it.</p>
   <div class="road">
     <div class="step now">
       <p class="when">At launch</p>
       <ul>
         <li><b>Leveling inside every track</b><span>Quiet solos lifted, shout choruses held back, breaks left alone.</span></li>
-        <li><b>Restore, Room and Ambience</b><span>Worn 78s cleaned up, the sound fitted to the venue, a touch of space for dry recordings.</span></li>
-        <li><b>The Restore Workshop</b><span>Worn recordings restored into new lossless copies in the background. Your originals never change.</span></li>
-        <li><b>Finished files for any player</b><span>The workshop's copies also levelled and tamed as the room plays them, for DJ programs, CDJs and phones.</span></li>
+        <li><b>Restore, Room and Ambience</b><span>Worn 78s cleaned up live, the sound fitted to the venue, space for dry recordings.</span></li>
+        <li><b>The Restore Workshop</b><span>New lossless copies of worn records, the silence at the ends trimmed. Originals never change.</span></li>
+        <li><b>Finished copies for any player</b><span>The workshop's copies levelled and tamed as the room plays them, for DJ programs, CDJs and phones.</span></li>
         <li><b>The DJ player</b><span>Up Next, pre-listen at the room's level, and BPM the way swing DJs count.</span></li>
       </ul>
     </div>
     <div class="step">
       <p class="when">Next</p>
       <ul>
-        <li><b>Slower for class</b><span>Tempo down or up without changing the pitch, in the player, to teach a step at an easier speed.</span></li>
+        <li><b>Slower for class</b><span>A track slower or faster without changing the pitch, in the player, to teach a step at an easier speed.</span></li>
       </ul>
     </div>
     <div class="step">
       <p class="when">Then</p>
       <ul>
-        <li><b>The same pause between every track</b><span>Silence at the start and end of a file trimmed in the player, so every gap is the length you set.</span></li>
+        <li><b>The same pause between every track</b><span>Silence at the start and end of each file skipped in the player, so every gap is the length you set.</span></li>
         <li><b>Your tags come along</b><span>Genre, comments, grouping and ratings from your files (FLAC too) and from Music, so your Lindy, Balboa and blues tags work at once.</span></li>
       </ul>
     </div>
