@@ -102,10 +102,10 @@
   .btn.ghost:hover { background: rgba(255, 255, 255, .06); }
   .facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin: 26px 0 0; padding: 0; list-style: none; color: var(--dark-muted); font-size: 14px; }
   .facts li::before { content: "●"; color: #ffa64d; font-size: 9px; margin-right: 8px; vertical-align: 2px; }
-  .stage { position: relative; margin: 60px auto 0; max-width: 1000px; }
+  .stage { position: relative; margin: 56px auto 0; padding-bottom: 80px; max-width: 460px; }
   .stage .window {
-    display: block; width: 100%; border-radius: 14px 14px 0 0;
-    box-shadow: 0 -10px 80px rgba(255, 148, 36, .18), 0 0 0 1px rgba(255, 255, 255, .07);
+    display: block; width: 100%; border-radius: 14px;
+    box-shadow: 0 20px 90px rgba(255, 148, 36, .28), 0 30px 60px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .08);
   }
 
   /* Sections */
@@ -169,6 +169,8 @@
   .feature.narrow { grid-template-columns: 1fr 240px; }
   .feature figure { margin: 0; }
   .inside + .feature { margin-top: 72px; }
+  .feature.solo { align-items: start; }
+  .feature.solo ul { margin-top: 0; }
   section > .feature:last-child, section > .listen:last-child { margin-bottom: 0; }
   #room .feature.narrow { align-items: start; margin-top: 28px; }
   .feature.narrow + .vs { margin-top: -40px; }
@@ -316,7 +318,6 @@
     .road .step { padding: 0 0 0 30px; }
     .road .step::before { top: 8px; bottom: -26px; left: 6px; right: auto; width: 2px; height: auto; }
     .road .step:last-child::before { bottom: 0; background: linear-gradient(180deg, var(--rule), transparent); }
-      .stage .window { border-radius: 10px; }
     section { padding-top: 72px; }
     .feature { margin-bottom: 64px; }
   }
@@ -364,7 +365,7 @@
       <li>Nothing recorded</li>
     </ul>
     <div class="stage">
-      <img class="window" src="images/player.jpg?v=2" width="1440" height="800" alt="The Swing & Sweet player with a library of swing records, Up Next and the sound card">
+      <img class="window" src="images/panel.png" width="384" height="374" alt="The Swing &amp; Sweet front panel: Leveling, Room, Ambience, Restore, Limiter only, the meters and Volume">
     </div>
   </div>
 </div>
@@ -507,12 +508,13 @@
     </div>
   </div>
 
-  <div class="feature">
-    <figure><img src="images/panel.png" width="384" height="374" alt="The front panel with Leveling, Room, Ambience, Restore and the meters"></figure>
+  <div class="feature solo">
     <div class="text">
       <h3>One knob for how firmly</h3>
-      <p>From Soft, which keeps more of the difference between a quiet trio and a big band, to Strict, which lifts
-        quiet passages more.</p>
+      <p>Leveling on the front panel goes from Soft, which keeps more of the difference between a quiet trio and a big
+        band, to Strict, which lifts quiet passages more.</p>
+    </div>
+    <div class="text">
       <ul>
         <li><strong>Harsh brass and drums tamed:</strong> a shrill trumpet section or a cracking snare is softened
           only while it is hard on the ears.</li>
