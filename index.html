@@ -575,8 +575,7 @@
       <div class="track" id="ab-track" role="slider" aria-label="Position" aria-valuemin="0" aria-valuemax="22" aria-valuenow="0" tabindex="0"><span id="ab-bar"></span></div>
       <span class="time" id="ab-time">0:00</span>
     </div>
-    <audio id="ab-a" src="audio/panama-before.m4a" preload="none"></audio>
-    <audio id="ab-b" src="audio/panama-after.m4a?v=2" preload="none" muted></audio>
+    <div id="ab-clips" data-before="audio/panama-before.m4a" data-after="audio/panama-after.m4a?v=2" hidden></div>
     <p class="fine">Before: the disc as it plays, transferred flat by the Great 78 Project (Internet Archive). After: the
       workshop's finished copy at its default settings, as the room would play it. Both at the same loudness. The recording (1922) and
       the tune (William H. Tyers, 1911) are in the public domain.</p>
@@ -781,53 +780,106 @@
 
 <script>
 (function () {
-  // Before and after: both clips play together and one is muted, so a switch is instant and in place.
-  var a = document.getElementById('ab-a'), b = document.getElementById('ab-b');
-  if (!a || !b) return;
+  // Before and after: both clips are decoded once and played from the same instant through two gains, so a switch is
+  // in place and sample-exact in every browser (two <audio> elements drifted and kept seeking in Safari: silence).
+  var clips = document.getElementById('ab-clips');
+  if (!clips) return;
   var play = document.getElementById('ab-play'), icon = document.getElementById('ab-icon');
   var before = document.getElementById('ab-before'), after = document.getElementById('ab-after');
   var bar = document.getElementById('ab-bar'), track = document.getElementById('ab-track'), time = document.getElementById('ab-time');
   var PLAY = 'M8 5v14l11-7z', PAUSE = 'M7 5h4v14H7zM13 5h4v14h-4z';
-  function playing() { return !a.paused; }
-  function show(afterOn) {
-    a.muted = afterOn; b.muted = !afterOn;
-    before.setAttribute('aria-pressed', String(!afterOn));
-    after.setAttribute('aria-pressed', String(afterOn));
+  var Ctx = window.AudioContext || window.webkitAudioContext;
+  var ctx = null, buffers = null, loading = null, sources = null, gains = null;
+  var playing = false, afterOn = false, offset = 0, startedAt = 0, duration = 22;
+
+  function decode(data) {
+    return new Promise(function (resolve, reject) { ctx.decodeAudioData(data, resolve, reject); });
+  }
+  function load() {
+    if (buffers) return Promise.resolve();
+    if (!loading) {
+      loading = Promise.all([clips.dataset.before, clips.dataset.after].map(function (url) {
+        return fetch(url).then(function (r) { return r.arrayBuffer(); }).then(decode);
+      })).then(function (bs) { buffers = bs; duration = Math.min(bs[0].duration, bs[1].duration); });
+    }
+    return loading;
+  }
+  function position() {
+    return playing ? Math.min(duration, ctx.currentTime - startedAt) : offset;
   }
   function setIcon() {
-    icon.innerHTML = '<path d="' + (playing() ? PAUSE : PLAY) + '"/>';
-    play.setAttribute('aria-label', playing() ? 'Pause' : 'Play');
+    icon.innerHTML = '<path d="' + (playing ? PAUSE : PLAY) + '"/>';
+    play.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+  }
+  function show(on) {
+    afterOn = on;
+    before.setAttribute('aria-pressed', String(!on));
+    after.setAttribute('aria-pressed', String(on));
+    if (gains) {
+      var t = ctx.currentTime;
+      gains[0].gain.setTargetAtTime(on ? 0 : 1, t, 0.005);
+      gains[1].gain.setTargetAtTime(on ? 1 : 0, t, 0.005);
+    }
+  }
+  function halt() {
+    if (sources) sources.forEach(function (s) { s.onended = null; try { s.stop(); } catch (e) {} });
+    sources = null;
   }
   function start() {
-    if (Math.abs(a.currentTime - b.currentTime) > 0.03) b.currentTime = a.currentTime;
-    Promise.all([a.play(), b.play()]).catch(function () {}).then(setIcon);
+    if (!ctx) ctx = new Ctx();  // made in the click, so the browser lets it sound
+    if (ctx.state === 'suspended') ctx.resume();
+    play.disabled = true;
+    load().then(function () {
+      play.disabled = false;
+      halt();
+      if (offset >= duration - 0.05) offset = 0;
+      gains = [ctx.createGain(), ctx.createGain()];
+      gains[0].gain.value = afterOn ? 0 : 1;
+      gains[1].gain.value = afterOn ? 1 : 0;
+      var at = ctx.currentTime + 0.05;
+      sources = buffers.map(function (buffer, i) {
+        var s = ctx.createBufferSource();
+        s.buffer = buffer;
+        s.connect(gains[i]);
+        gains[i].connect(ctx.destination);
+        s.start(at, offset);
+        return s;
+      });
+      sources[0].onended = function () { playing = false; offset = 0; halt(); setIcon(); draw(); };
+      startedAt = at - offset;
+      playing = true;
+      setIcon();
+    }).catch(function () { play.disabled = false; time.textContent = 'could not load'; });
   }
-  function stop() { a.pause(); b.pause(); setIcon(); }
-  play.addEventListener('click', function () { playing() ? stop() : start(); });
+  function stop() {
+    offset = position();
+    playing = false;
+    halt();
+    setIcon();
+  }
+  function seek(fraction) {
+    offset = Math.max(0, Math.min(1, fraction)) * duration;
+    if (playing) { playing = false; start(); } else draw();
+  }
+  function draw() {
+    var t = position();
+    bar.style.width = (100 * t / duration) + '%';
+    track.setAttribute('aria-valuenow', String(Math.round(t)));
+    time.textContent = Math.floor(t / 60) + ':' + ('0' + Math.floor(t % 60)).slice(-2);
+  }
+  play.addEventListener('click', function () { playing ? stop() : start(); });
   before.addEventListener('click', function () { show(false); });
   after.addEventListener('click', function () { show(true); });
-  function seek(fraction) {
-    if (!a.duration) return;
-    var t = Math.max(0, Math.min(1, fraction)) * a.duration;
-    a.currentTime = t; b.currentTime = t;
-  }
   track.addEventListener('click', function (e) {
     var r = track.getBoundingClientRect();
     seek((e.clientX - r.left) / r.width);
   });
   track.addEventListener('keydown', function (e) {
-    if (!a.duration) return;
-    if (e.key === 'ArrowRight') seek((a.currentTime + 2) / a.duration);
-    if (e.key === 'ArrowLeft') seek((a.currentTime - 2) / a.duration);
+    if (e.key === 'ArrowRight') seek((position() + 2) / duration);
+    if (e.key === 'ArrowLeft') seek((position() - 2) / duration);
   });
-  a.addEventListener('timeupdate', function () {
-    var d = a.duration || 22, t = a.currentTime;
-    bar.style.width = (100 * t / d) + '%';
-    track.setAttribute('aria-valuenow', String(Math.round(t)));
-    time.textContent = Math.floor(t / 60) + ':' + ('0' + Math.floor(t % 60)).slice(-2);
-    if (!b.paused && Math.abs(a.currentTime - b.currentTime) > 0.06) b.currentTime = a.currentTime;
-  });
-  a.addEventListener('ended', function () { b.pause(); a.currentTime = 0; b.currentTime = 0; setIcon(); });
+  setInterval(function () { if (playing) draw(); }, 100);
+  if (!Ctx || !window.fetch || !window.Promise) { play.disabled = true; time.textContent = 'not supported'; }
   show(false);
 })();
 </script>
