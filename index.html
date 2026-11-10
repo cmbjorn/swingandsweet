@@ -281,22 +281,9 @@
   .road li span { color: var(--muted); font-size: 14.5px; line-height: 1.5; display: block; }
   .road-note { color: var(--muted); font-size: 14.5px; margin: 18px 0 0; }
 
-  /* Waitlist */
-  .wl { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 640px; margin: 0 auto 12px; }
-  .wl input, .wl select {
-    font: inherit; font-size: 16px; color: var(--dark-text); background: rgba(255, 255, 255, .06);
-    border: 1px solid rgba(255, 255, 255, .2); border-radius: 12px; padding: 12px 14px; min-width: 0;
-  }
-  .wl input[type=email] { flex: 1 1 240px; }
-  .wl select { flex: 0 1 210px; }
-  .wl select option { color: #1a1206; }
-  .wl input::placeholder { color: var(--dark-muted); }
-  .wl input:focus, .wl select:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
-  .wl button { border: 0; cursor: pointer; font: inherit; }
-  .wl .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  /* Beta */
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .closing p.wl-note { font-size: 13.5px; max-width: 36em; margin: 0 auto 34px; }
-  .closing p.wl-done { color: var(--dark-text); font-size: 18px; font-weight: 600; margin: 0 auto 34px; }
   .closing .more { font-size: 16px; margin-bottom: 18px; }
 
   @media (max-width: 900px) {
@@ -354,9 +341,9 @@
     <p class="lede">Swing &amp; Sweet sits between your music app and the PA and makes <strong>every track right for
       the dance floor</strong>: one level from track to track, quiet solos lifted, harsh brass tamed, worn 78s cleaned
       up. Set the mixer once and watch the dancers, not the fader.</p>
-    <p class="store"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 016 0"/></svg>Coming soon to the Mac App Store</p>
+    <p class="store"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 016 0"/></svg>Public beta on TestFlight · coming to the Mac App Store</p>
     <div class="buttons">
-      <a class="btn primary" href="#waitlist">Join the waitlist</a>
+      <a class="btn primary" href="https://testflight.apple.com/join/RmZD1VRu">Get the beta on TestFlight</a>
       <a class="btn ghost" href="#how">See how it works</a>
     </div>
     <ul class="facts">
@@ -728,28 +715,15 @@
   </div>
 </section>
 
-<div class="closing" id="waitlist">
-  <h2>Coming soon to the Mac App Store</h2>
-  <p>Join the waitlist and you will get one email, on the day Swing &amp; Sweet is out.</p>
-  <form class="wl" id="wl-form" action="https://formsubmit.co/christianmb@gmail.com" method="POST">
-    <input type="hidden" name="_subject" value="Swing & Sweet waitlist">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_next" value="https://cmbjorn.github.io/swingandsweet/#thanks">
-    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <label class="sr" for="wl-email">Email</label>
-    <input id="wl-email" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
-    <select name="role" aria-label="I am">
-      <option value="">I am… (optional)</option>
-      <option>A swing or blues DJ</option>
-      <option>A dance teacher</option>
-      <option>A jazz listener at home</option>
-      <option>Other</option>
-    </select>
-    <button class="btn primary" type="submit">Join the waitlist</button>
-  </form>
-  <p class="wl-done" id="wl-done" hidden>Thank you, you are on the list.</p>
-  <p class="wl-note" id="wl-note">Your email is sent to Christian through the form service FormSubmit and used only to tell
-    you when Swing &amp; Sweet is out. Write, and you are taken off the list.</p>
+<div class="closing" id="beta">
+  <h2>Try the beta today</h2>
+  <p>Swing &amp; Sweet is in public beta. Install Apple's free TestFlight app on your Mac, open the link, and you have
+    the latest build; it updates itself, and the 14-day trial works as it will in the store.</p>
+  <div class="buttons">
+    <a class="btn primary" href="https://testflight.apple.com/join/RmZD1VRu">Get the beta on TestFlight</a>
+  </div>
+  <p class="wl-note">macOS 14.2 or later. Tell Christian what you hear on your floor: what works, what does not, and
+    the records that still sound wrong.</p>
   <p class="more">Questions, or want to hear it at your next social? Write to Christian Melby Bjørn, who makes Swing &amp; Sweet.</p>
   <div class="buttons">
     <a class="btn ghost" href="mailto:christianmb@gmail.com?subject=Swing%20%26%20Sweet">Get in touch</a>
@@ -870,30 +844,6 @@
   setInterval(function () { if (playing) draw(); }, 100);
   if (!Ctx || !window.fetch || !window.Promise) { play.disabled = true; time.textContent = 'not supported'; }
   show(false);
-})();
-</script>
-<script>
-(function () {
-  var form = document.getElementById('wl-form');
-  var done = document.getElementById('wl-done');
-  function thanks() { form.hidden = true; done.hidden = false; }
-  if (location.hash === '#thanks') { thanks(); document.getElementById('waitlist').scrollIntoView(); }
-  form.addEventListener('submit', function (e) {
-    if (!window.fetch) return;
-    e.preventDefault();
-    var data = {};
-    new FormData(form).forEach(function (v, k) { data[k] = v; });
-    if (data._honey) { thanks(); return; }
-    var button = form.querySelector('button');
-    button.disabled = true;
-    fetch('https://formsubmit.co/ajax/christianmb@gmail.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(function (r) { return r.json(); }).then(function (j) {
-      if (j && String(j.success) === 'true') { thanks(); } else { form.submit(); }
-    }).catch(function () { form.submit(); });
-  });
 })();
 </script>
 </body>
